@@ -10,6 +10,7 @@ import { cartUiActions } from "../../store/shopping-cart/cartUiSlice";
 import { logOut } from "../../pages/redux/apiRequest";
 import HomeShop from "../../pageShop/HomeShop";
 import { listCarts } from "../../pages/redux/Actions/CartActions";
+import { toast } from "react-toastify";
 
 
 
@@ -21,7 +22,7 @@ const Header = () => {
       path: "/home",
     },
     {
-      display: "Cửa Hàng",
+      display: "Mua Sắm",
       path: "/shop",
     },
     {
@@ -40,6 +41,7 @@ const Header = () => {
   const [sub, setSub] = useState([])
   const cartList = useSelector((state) => state.cart);
   const { loading, error, carts } = cartList;
+
   useEffect(() => {
     const loadsub = () => {
       setSub(cartList.carts?.map((cart) => cart))
@@ -72,8 +74,8 @@ const Header = () => {
     logOut(dispatch, navigate);
   };
 
-  const isShopExist = user?.IsShop === "True";
-  console.log(isShopExist);
+
+
 
   const profileActionRef = useRef(null);
 
@@ -105,17 +107,36 @@ const Header = () => {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+  const isShopExist = (user?.IsShop === "True" && user?.roleId === "SP");
+  const isShopBan = (user?.IsShop === "True" && user?.roleId === "CUS");
+  console.log(isShopExist)
+  console.log(isShopBan)
 
 
+  const checkShop = () => {
+    if (user?.IsShop === "null" && user?.role === "CUS") {
+      navigate('/registerShop');
+    }
+    if (user?.IsShop === "True" && user?.role === "SP") {
+      navigate('/manageshop');
+    }
+    if (user?.IsShop === "True" && user?.role === "CUS") {
+      toast.error("Tài khoản Shop không khả dụng", {
+        autoClose: 1000,
+      });
+    }
+  }
+
+const handleGotohome = () => {
+  navigate("/home");
+}
   return (
     <header className="header" ref={headerRef}>
       <Container>
         <div className="nav__wrapper d-flex align-items-center justify-content-between">
-          <div className="logo">
-            <Link to="/home">
-              <img src={logo} alt="logo" />
-            </Link>
-            <h5>Bird Trading</h5>
+          <div className="logo" onClick={handleGotohome}>
+            <img src={logo} alt="logo" />
+            <div className="NameLogo">Bird Trading</div>
           </div>
           {/* ======= menu ======= */}
           <div className="navigation" ref={menuRef} onClick={toggleMenu}>
@@ -130,7 +151,7 @@ const Header = () => {
               </div>
               {nav__links.map((item, index) => (
                 <>
-                  { (!user.UserId &&  item.display !== "Đơn Hàng Của Tôi") && (
+                  {(!user.UserId && item.display !== "Đơn Hàng Của Tôi") && (
                     (
                       <NavLink
                         to={item.path}
@@ -146,7 +167,7 @@ const Header = () => {
                   )
 
                   }
-                  
+
                   {user.UserId && (
                     <NavLink
                       to={item.path}
@@ -178,7 +199,7 @@ const Header = () => {
             <span className="cart__icon" onClick={toggleCart}>
               <i className="ri-shopping-basket-line"></i>
 
-              <span className="cart__badge">{sub?.length|| 0}</span>
+              <span className="cart__badge">{sub?.length || 0}</span>
             </span>
             <div className="profile">
               {user.UserId ? (
@@ -208,9 +229,10 @@ const Header = () => {
               >
                 {user.UserId ? (
                   <div className="d-flex align-items-center justify-content-center flex-column">
-                    <Link to={isShopExist ? "/manageshop" : "/registerShop"}>
+
+                    <div onClick={checkShop} style={{ fontSize: "18px" }}>
                       Cửa Hàng của Tôi
-                    </Link>
+                    </div>
                     <Link to="/AccountUser">Tài Khoản</Link>
                     <Link to="/logout" onClick={handleLogOut}>
                       Đăng Xuất
