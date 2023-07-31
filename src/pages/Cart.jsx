@@ -21,7 +21,7 @@ const Cart = () => {
     const [cartID, setcartID] = useState(0);
     const [quantity, setquantity] = useState(0);
     const [total, setTotal] = useState(0);
-    const[ productDeleteItem,setProductDeleteItem] = useState();
+    const [productDeleteItem, setProductDeleteItem] = useState();
     const reloadData = () => {
         axios.get(`https://birdtradingplatformapi.azurewebsites.net/api/Order/ViewCart`, {
             headers: {
@@ -174,9 +174,9 @@ const Cart = () => {
 
     const handleConfirmation = () => {
         let updatedOrderSelect = [...orderSelect];
-        const finded = updatedOrderSelect.find(u => u.productId === productDeleteItem )
+        const finded = updatedOrderSelect.find(u => u.productId === productDeleteItem)
         if (finded) {
-            updatedOrderSelect = updatedOrderSelect.filter(u => u.productId !== productDeleteItem )
+            updatedOrderSelect = updatedOrderSelect.filter(u => u.productId !== productDeleteItem)
         }
         setOrderSelect(updatedOrderSelect);
         const UpdateCart =
@@ -208,7 +208,7 @@ const Cart = () => {
         setcartID(data.cartId);
         setShowConfirmation(true);
         setProductDeleteItem(data.productId)
-       
+
     };
 
     useEffect(() => {
@@ -364,11 +364,11 @@ const Cart = () => {
 
                 <div className="Cart-page-inFor">
                     <div className="cart-shop-select">
-                     
+
                     </div>
                     <div className="cart-products-info">
                         <div className="cart-inFor">
-                            
+
                         </div>
                     </div>
                     <div className="cart-products-totalCheckOut">
@@ -427,8 +427,8 @@ const Cart = () => {
                             <div className="text-confirmation">Bạn có muốn xóa mục này không?</div>
                             <div className="productName-confirmation"> {ProductName}</div>
                             <div className="button-confirm" >
-                                <button className="button-yes-confirm" onClick={() => handleConfirmation()}>Yes</button>
-                                <button onClick={() => setShowConfirmation(false)}>No</button>
+                                <button className="button-yes-confirm" onClick={() => handleConfirmation()}>Đồng Ý</button>
+                                <button onClick={() => setShowConfirmation(false)}>Hủy</button>
                             </div>
                         </div>
                     </div>
