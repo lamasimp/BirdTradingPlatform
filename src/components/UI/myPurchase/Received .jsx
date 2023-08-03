@@ -15,6 +15,10 @@ const Received = () => {
   const [ShowBuyAgain, setShowBuyAgain] = useState(false);
   const navigate = useNavigate();
   const [LoadApi, setLoadApi] = useState(false);
+  const [isReportVisible, setIsReportVisible] = useState(false);
+  const handleReportSuccess = () => {
+    setIsReportVisible(false);
+  };
   useEffect(() => {
     const ApiMain = () => {
       setOrderList([]);
@@ -214,14 +218,7 @@ const Received = () => {
                         </button>
                       </div>
                     )}
-                    {/* {
-                                                  product.toFeedback === true && (
-                                                       <div>
-                                                            <button style={{ border: "1.5px solid #176eb0", backgroundColor: "rgb(210, 229, 239)", color: "#176eb0", padding: "5px 10px", borderRadius: "3px" }}
-                                                            >View My Feedback </button>
-                                                       </div>
-                                                  )
-                                             } */}
+
                     {ShowFeedTable && (
                       <AddFeedback
                         productId={product.productId}

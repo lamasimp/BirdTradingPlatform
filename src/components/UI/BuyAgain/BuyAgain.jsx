@@ -4,14 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Button from "@mui/material/Button";
 import numeral from "numeral";
-import { items } from "fusioncharts";
+import { data } from "jquery";
 const BuyAgain = ({ orderList, setShowBuyAgain }) => {
   const navigate = useNavigate();
-  const [loads, setLoads] = useState(false);
   const [orderSelect, setOrderSelect] = useState([]);
-  const [orderCheckout, setOrderCheckout] = useState([]);
   const [orderdata, setorderdata] = useState(orderList);
-  const [orderSelect1, setOrderSelect1] = useState(orderdata);
   useEffect(() => {
     setOrderSelect(
       orderdata.items.map((product) => ({
@@ -28,7 +25,6 @@ const BuyAgain = ({ orderList, setShowBuyAgain }) => {
     );
   }, [orderdata]);
 
-  console.log(orderSelect);
   const UpdateItem = (data) => {
     const { quantity, productId, quantityPro } = data;
     const updatedOrderData = { ...orderdata };
@@ -51,7 +47,6 @@ const BuyAgain = ({ orderList, setShowBuyAgain }) => {
 
     updatedOrderData.items = updatedItems;
 
-    console.log(updatedOrderData);
     setorderdata(updatedOrderData);
   };
 
@@ -75,7 +70,7 @@ const BuyAgain = ({ orderList, setShowBuyAgain }) => {
       <div
         className="log-add-feedback"
         style={{
-          width: "900px",
+          width: "1000px",
           padding: "10px",
           borderRadius: "2px",
           background: "#fff",
@@ -120,7 +115,10 @@ const BuyAgain = ({ orderList, setShowBuyAgain }) => {
               </div>
             </div>
 
-            <div className="cart-products-quantity">
+            <div
+              className="cart-products-quantity"
+              style={{ margin: "0px 20px 50px " }}
+            >
               <button
                 className="cart-clickQuantity"
                 onClick={() =>
@@ -163,7 +161,11 @@ const BuyAgain = ({ orderList, setShowBuyAgain }) => {
         >
           <div
             className="cart-inFor"
-            style={{ color: "#088b0dc4", fontSize: "20px" }}
+            style={{
+              color: "#088b0dc4",
+              fontSize: "20px",
+              marginRight: "60px",
+            }}
           >
             Tổng Thanh Toán:
             <div className="don-vi" style={{ marginLeft: "5px" }}>
