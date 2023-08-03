@@ -13,7 +13,7 @@ export const listCarts = () => async (dispatch) => {
             },
         };
 
-        const { data } = await axios.get(`https://birdtradingplatformapi.azurewebsites.net/api/Order/ViewCartQuantity`, config);
+        const { data } = await axios.get(`https://localhost:7241/api/Order/ViewCartQuantity`, config);
         console.log(data)
         dispatch({ type: CART_LIST_SUCCESS, payload: data });
     } catch (error) {

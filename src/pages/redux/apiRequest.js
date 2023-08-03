@@ -14,7 +14,7 @@ export const loginUser = async (user, dispatch, navigate) => {
 
 
     try {
-        const res = await axios.post("https://birdtradingplatformapi.azurewebsites.net/api/User/Login", user);
+        const res = await axios.post("https://localhost:7241/api/User/Login", user);
         if (res.status = 200) {
             if (res.data.message === "Email Or Password Incorrect :(") {
                 toast.error(res.data.message, {
@@ -63,7 +63,7 @@ export const registerUser = async (user, dispatch, navigate) => {
     dispatch(registerStart());
     try {
         console.log("sfdfs")
-        await axios.post("https://birdtradingplatformapi.azurewebsites.net/api/User/Register", user);
+        await axios.post("https://localhost:7241/api/User/Register", user);
 
         dispatch(registerSuccess());
 
@@ -87,7 +87,7 @@ export const logOut = async (dispatch, navigate) => {
                 Authorization: `Bearer ${accessToken}`,
             },
         };
-        await axios.post("https://birdtradingplatformapi.azurewebsites.net/api/User/logout", {}, config
+        await axios.post("https://localhost:7241/api/User/logout", {}, config
         );
         dispatch(logoutSuccess());
         localStorage.removeItem('jwtToken');
@@ -106,7 +106,7 @@ export const registerShop = async (shop, dispatch, navigate, accessToken) => {
     dispatch(registerShopStart());
     try {
 
-        const res = await axios.post("https://birdtradingplatformapi.azurewebsites.net/api/Shop/registerShop", shop, {
+        const res = await axios.post("https://localhost:7241/api/Shop/registerShop", shop, {
             headers: {
                 Authorization: `Bearer ${accessToken}`
             }
@@ -132,7 +132,7 @@ export const changePassword = async (userPassword, dispatch, accessToken) => {
     dispatch(changePasswordStart());
     try {
 
-        await axios.post("https://birdtradingplatformapi.azurewebsites.net/api/User/ChangePassword", userPassword, {
+        await axios.post("https://localhost:7241/api/User/ChangePassword", userPassword, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
@@ -160,7 +160,7 @@ export const updateUser = async (newUser, accessToken, dispatch) => {
         formData.append('Name', newUser.Name);
         formData.append('avatar', newUser.avatar);
 
-        await axios.put("https://birdtradingplatformapi.azurewebsites.net/api/User/UpdateMee", formData, {
+        await axios.put("https://localhost:7241/api/User/UpdateMee", formData, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },

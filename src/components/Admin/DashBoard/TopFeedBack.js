@@ -8,7 +8,7 @@ const TopFeedBack = () => {
 
     useEffect(() => {
         axios
-            .get('https://birdtradingplatformapi.azurewebsites.net/api/Admin/GettopFeedback', {
+            .get('https://localhost:7241/api/Admin/GettopFeedback', {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },

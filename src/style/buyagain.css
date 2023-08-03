@@ -1,0 +1,59 @@
+.buy-again-form {
+  position: static;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buy-again-form-inner {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.buy-again-form-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.buy-again-form-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.buy-again-form-input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.buy-again-form-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buy-again-form-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+}
+
+.buy-again-form-button:hover {
+  background-color: #0069d9;
+}
+
+.buy-again-form-button:active {
+  background-color: #0062cc;
+}

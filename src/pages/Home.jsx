@@ -22,12 +22,12 @@ import chim5 from "../assets/images/4.png";
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 const Home = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const reloadData = () => { };
+  const reloadData = () => {};
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("https://birdtradingplatformapi.azurewebsites.net/api/Products/Hot_Product")
+      .get("https://localhost:7241/api/Products/Hot_Product")
       .then((res) => {
         dispatch(listCarts());
         // console.log(res.data);
@@ -66,7 +66,10 @@ const Home = () => {
   return (
     <Helmet title="Home">
       <div className="home-page-log ">
-        <div style={{ backgroundColor: "#fff", padding: "15px" }} className="mb-3">
+        <div
+          style={{ backgroundColor: "#fff", padding: "15px" }}
+          className="mb-3"
+        >
           <div className="slider-log">
             <Swiper
               tag="section"
@@ -119,7 +122,9 @@ const Home = () => {
           </div>
         </div>
 
-        <section style={{ backgroundColor: '#fff', width: '1297px', margin: '0 auto' }}>
+        <section
+          style={{ backgroundColor: "#fff", width: "1297px", margin: "0 auto" }}
+        >
           <Category />
         </section>
 

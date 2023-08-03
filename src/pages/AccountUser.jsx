@@ -55,7 +55,7 @@ const AccountUser = () => {
 
   useEffect(() => {
     axios
-      .get("https://birdtradingplatformapi.azurewebsites.net/api/User/Meee", {
+      .get("https://localhost:7241/api/User/Meee", {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
